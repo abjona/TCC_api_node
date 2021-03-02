@@ -1,0 +1,482 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API - Avaliação de características físcias e psicológicas por meio de impressões digitais ",
+    "version": "1.0.0",
+    "title": "Rating API",
+    "contact": {
+      "email": "abjonathan@hotmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:3333",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "user",
+      "description": "Operações de usuário"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/finger/classification/character":{
+      "post": {
+        "tags":[
+          "classification"
+        ],
+        "summary": "adicione caracteristicas a uma classe de digital",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters":[
+          {
+            "name": "deltaQtd",
+            "in": "body",
+            "description": "quatidade de deltas",
+            "type": "integer"
+          },
+          {
+            "name": "coreQtd",
+            "in": "body",
+            "description": "quatidade de core",
+            "type": "integer"
+          },
+          {
+            "name": "description",
+            "in": "body",
+            "description": "nome da classe da digital",
+            "type": "string"
+          },
+          {
+            "name": "characters",
+            "in": "body",
+            "description": "array de caracteristicas",
+            "type": "array"
+          }
+        ]
+      }
+    },
+    "/finger/classification/characters":{
+      "get":{
+        "tags": [
+          "classification"
+        ],
+        "summary": "lista caracteristicas adicionadas",
+        "description": "",
+        "operationId": "getCharacter",
+        "consumes":[
+          "application/json"
+        ],
+        "produces":[
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Classification_Singularities"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+
+    "/statistic/{id}":{
+      "post": {
+        "tags":[
+          "statistics"
+        ],
+        "summary": "gráfico de características de uma pessoa",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of avaliation",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ]
+      }
+    },
+    "/finger/rating/{id}": {
+      "post": {
+        "tags": [
+          "rating"
+        ],
+        "summary": "adicione as imagens em uma avaliação",
+        "description": "",
+        "operationId": "addRating",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of avaliation",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "file to upload",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          },
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "rating"
+        ],
+        "summary": "delete uma avaliação",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of avaliation",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/finger/ratings/{id}": {
+      "get": {
+        "tags": [
+          "rating"
+        ],
+        "summary": "lista de avaliações",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "findPetsByStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of avaliation",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Rating"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "login no sistema",
+        "description": "",
+        "operationId": "loginUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "body",
+            "description": "The user name for login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "senha",
+            "in": "body",
+            "description": "The password for login in clear text",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            },
+            "headers": {
+              "X-Rate-Limit": {
+                "type": "integer",
+                "format": "int32",
+                "description": "calls per hour allowed by the user"
+              },
+              "X-Expires-After": {
+                "type": "string",
+                "format": "date-time",
+                "description": "date in UTC when token expires"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        }
+      }
+    },
+    "/user/create": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "create user",
+        "description": "",
+        "operationId": "loginUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "body",
+            "description": "The user name for login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "body",
+            "description": "The user name for login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "senha",
+            "in": "body",
+            "description": "The password for login in clear text",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+      "flow": "implicit",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    },
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Left_Hand": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "thumb": {
+          "type": "string"
+        },
+        "index": {
+          "type": "string"
+        },
+        "medium": {
+          "type": "string"
+        },
+        "ring": {
+          "type": "string"
+        },
+        "minimun": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Left_Hand"
+      }
+    },
+    "Right_Hand": {
+      "type": "object",
+      "properties": {
+        "thumb": {
+          "type": "string"
+        },
+        "index": {
+          "type": "string"
+        },
+        "medium": {
+          "type": "string"
+        },
+        "ring": {
+          "type": "string"
+        },
+        "minimun": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Right_Hand"
+      }
+    },
+    "Rating": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "date": {
+          "type": "date"
+        },
+        "left_hand": {
+          "$ref": "#/definitions/Left_Hand"
+        },
+        "right_hand": {
+          "$ref": "#/definitions/Right_Hand"
+        }
+      }
+    },
+    "Classification_Singularities": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "deltaQtd": {
+          "type": "integer"
+        },
+        "coreQtd": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "integer"
+        },
+        "characters": {
+          "type": "array"
+        }
+        
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}

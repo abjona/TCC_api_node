@@ -1,0 +1,47 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\abjon\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add express moongose cors
+
+PATH: 
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\abjon\bin;C:\Python27;C:\Python27\Scripts;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\TDM-GCC-64\bin;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Users\abjon\AppData\Local\Microsoft\WindowsApps;C:\Users\abjon\AppData\Local\Programs\Microsoft VS Code\bin;C:\flutter\bin;C:\gradle\gradle-6.0.1\bin;C:\Users\abjon\AppData\Local\Android\Sdk\platform-tools;C:\Users\abjon\AppData\Local\Yarn\bin;C:\Program Files\heroku\bin;C:\Users\abjon\AppData\Roaming\npm;C:\Program Files\Java\jdk1.8.0_231\bin;C:\Users\abjon\AppData\Local\Android\Sdk\build-tools\29.0.2
+
+Yarn version: 
+  1.19.2
+
+Node version: 
+  10.17.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/moongose: Not found
+      at Request.params.callback [as _callback] (C:\Users\abjon\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66927:18)
+      at Request.self.callback (C:\Users\abjon\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140586:22)
+      at Request.emit (events.js:198:13)
+      at Request.<anonymous> (C:\Users\abjon\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141558:10)
+      at Request.emit (events.js:198:13)
+      at IncomingMessage.<anonymous> (C:\Users\abjon\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141480:12)
+      at Object.onceWrapper (events.js:286:20)
+      at IncomingMessage.emit (events.js:203:15)
+      at endReadableNT (_stream_readable.js:1143:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
+
+npm manifest: 
+  {
+    "name": "Api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
