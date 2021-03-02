@@ -1,6 +1,5 @@
 const Admin = require('../models/Admin');
 const md5 = require('md5');
-
 senha = md5('admin');
 
 const AdminCreate = async () => {
