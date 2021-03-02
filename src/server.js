@@ -11,7 +11,8 @@ moongose.connect(`${process.env.URL_MOONGO}`,{
     useUnifiedTopology: true
 });
 
-app.use(cors({ origin: '*' }));
+app.options("*", cors());
+app.use(cors());
 app.use(express.json());
 app.use('/files',express.static(path.resolve(__dirname,'..', 'uploads')));
 
