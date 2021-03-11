@@ -54,8 +54,8 @@ const compare = async (rating, characters) => {
       }
 
       if (deltaLthumb == char.deltaQtd && coreLthumb == char.coreQtd) {
-        rate.minutiae.l_index.class = char.description;
-        rate.minutiae.l_index.characters = char.characters;
+        rate.minutiae.l_thumb.class = char.description;
+        rate.minutiae.l_thumb.characters = char.characters;
       }
 
       if (deltaRindex == char.deltaQtd && coreRindex == char.coreQtd) {
@@ -79,8 +79,8 @@ const compare = async (rating, characters) => {
       }
 
       if (deltaRthumb == char.deltaQtd && coreRthumb == char.coreQtd) {
-        rate.minutiae.r_index.class = char.description;
-        rate.minutiae.r_index.characters = char.characters;
+        rate.minutiae.r_thumb.class = char.description;
+        rate.minutiae.r_thumb.characters = char.characters;
       }
     }
   }

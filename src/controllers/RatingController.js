@@ -68,7 +68,7 @@ const store = async (req, res) => {
     ],
   };
 
-  let teste = await axios.post(`${process.env.URL_API2}`, content);
+  let teste = await axios.post('http://localhost:5000/classification', content);
 
   let r_hand = await Right_Hand.create({
     thumb: r_thumb,

@@ -6,7 +6,7 @@ const moongose = require('mongoose');
 const swaggerUI = require('swagger-ui-express');
 const openApi = require('./swagger.json');
 const app = express();
-moongose.connect(`${process.env.URL_MOONGO}`,{
+moongose.connect('mongodb+srv://ramses:88812271jona@cluster0-kfag5.mongodb.net/test?retryWrites=true&w=majority',{
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -18,5 +18,5 @@ app.use('/files',express.static(path.resolve(__dirname,'..', 'uploads')));
 
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(openApi));
 app.use(routes);
-app.listen(process.env.PORT);
+app.listen(3333);
 
